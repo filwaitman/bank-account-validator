@@ -1,47 +1,51 @@
 # -*- coding: utf-8 -*-
-class BankNotImplemented(Exception):
+class BaseBankAccountValidationError(Exception):
+    pass
+
+
+class BankNotImplemented(BaseBankAccountValidationError):
     def __init__(self, bank_code, country):
         message = 'Bank code "{}" is not implemented for country "{}"- or it does not exist at all.'.format(bank_code, country)
         super(BankNotImplemented, self).__init__(message)
 
 
-class MissingBranchDigit(Exception):
+class MissingBranchDigit(BaseBankAccountValidationError):
     def __init__(self, bank):
         message = 'For bank code "{}", branches must have a digit, of length {}.'.format(bank.bank_code, bank.branch_digit_length)
         super(MissingBranchDigit, self).__init__(message)
 
 
-class MissingAccountDigit(Exception):
+class MissingAccountDigit(BaseBankAccountValidationError):
     def __init__(self, bank):
         message = 'For bank code "{}", accounts must have a digit, of length {}.'.format(bank.bank_code, bank.account_digit_length)
         super(MissingAccountDigit, self).__init__(message)
 
 
-class UnexpectedBranchDigit(Exception):
+class UnexpectedBranchDigit(BaseBankAccountValidationError):
     def __init__(self, bank):
         message = 'For bank code "{}", branches must have {} digits.'.format(bank.bank_code, bank.branch_digit_length)
         super(UnexpectedBranchDigit, self).__init__(message)
 
 
-class UnexpectedAccountDigit(Exception):
+class UnexpectedAccountDigit(BaseBankAccountValidationError):
     def __init__(self, bank):
         message = 'For bank code "{}", accounts must have {} digits.'.format(bank.bank_code, bank.account_digit_length)
         super(UnexpectedAccountDigit, self).__init__(message)
 
 
-class InvalidBranchlength(Exception):
+class InvalidBranchlength(BaseBankAccountValidationError):
     def __init__(self, bank):
         message = 'For bank code "{}", branches length must be {}.'.format(bank.bank_code, bank.branch_length)
         super(InvalidBranchlength, self).__init__(message)
 
 
-class InvalidAccountlength(Exception):
+class InvalidAccountlength(BaseBankAccountValidationError):
     def __init__(self, bank):
         message = 'For bank code "{}", accounts length must be {}.'.format(bank.bank_code, bank.account_length)
         super(InvalidAccountlength, self).__init__(message)
 
 
-class InvalidBranch(Exception):
+class InvalidBranch(BaseBankAccountValidationError):
     def __init__(self, branch, branch_digit):
         branch_info = branch
         if branch_digit:
@@ -51,7 +55,7 @@ class InvalidBranch(Exception):
         super(InvalidBranch, self).__init__(message)
 
 
-class InvalidAccount(Exception):
+class InvalidAccount(BaseBankAccountValidationError):
     def __init__(self, account, account_digit):
         account_info = account
         if account_digit:
@@ -61,7 +65,7 @@ class InvalidAccount(Exception):
         super(InvalidAccount, self).__init__(message)
 
 
-class InvalidBranchAndAccountCombination(Exception):
+class InvalidBranchAndAccountCombination(BaseBankAccountValidationError):
     def __init__(self, branch, branch_digit, account, account_digit):
         branch_info = branch
         if branch_digit:
