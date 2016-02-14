@@ -1,5 +1,5 @@
 Bank Account Validator
-=============
+=======================
 
 Python implementation for bank account validation.
 
