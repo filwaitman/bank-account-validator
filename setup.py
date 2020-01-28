@@ -8,7 +8,7 @@ setup(
     packages=['bank_account_validator'],
     version=VERSION,
     author='Filipe Waitman',
-    author_email='dev@noverde.com.br',
+    author_email='filwaitman@gmail.com',
     tests_require=['setuptools==19.1.1', 'nose==1.3.7'],
     url='https://github.com/noverde/bank-account-validator',
     download_url=(
