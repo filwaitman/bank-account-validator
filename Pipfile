@@ -10,8 +10,6 @@ pre-commit = "*"
 ipdb = "*"
 ipython = "*"
 isort = "*"
-pytest = "*"
-pytest-cov = "*"
 
 [packages]
 
