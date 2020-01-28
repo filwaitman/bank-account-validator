@@ -7,7 +7,7 @@ class BankNotImplemented(BaseBankAccountValidationError):
     def __init__(self, bank_code, country):
         message = (
             'Bank code "{}" is not implemented for country '
-            '"{}"- or it does not exist at all.'
+            '"{}" or it does not exist at all.'
         ).format(bank_code, country)
         super(BankNotImplemented, self).__init__(message)
 
