@@ -4,23 +4,23 @@ import unittest
 from bank_account_validator.core import BrazilianBank
 from bank_account_validator.exceptions import (
     BankNotImplemented,
-    InvalidBranch,
     InvalidAccount,
+    InvalidAccountlength,
+    InvalidBranch,
     InvalidBranchAndAccountCombination,
     InvalidBranchlength,
-    InvalidAccountlength,
-    MissingBranchDigit,
     MissingAccountDigit,
-    UnexpectedBranchDigit,
+    MissingBranchDigit,
     UnexpectedAccountDigit,
+    UnexpectedBranchDigit,
 )
 from tests.data import (
-    BANRISUL,
     BANCO_DO_BRASIL,
-    SANTANDER,
-    CAIXA_ECONOMICA_FEDERAL,
+    BANRISUL,
     BRADESCO,
+    CAIXA_ECONOMICA_FEDERAL,
     ITAU,
+    SANTANDER,
 )
 
 
@@ -60,9 +60,10 @@ class BankAccountValidatorBaseTestCase(object):
                 len(errors)
             )
             for error in errors:
-                msg += "\naccount_number_validator('{}', '{}', '{}') returned False (expected True)".format(
-                    *error
-                )
+                msg += (
+                    '\naccount_number_validator("{}", "{}", "{}") '
+                    'returned False (expected True)'
+                ).format(*error)
 
             self.fail(msg)
 
@@ -84,16 +85,19 @@ class BankAccountValidatorBaseTestCase(object):
                 InvalidAccount,
                 InvalidBranchAndAccountCombination,
             ):
-                pass  # that's the expected scenario - just like an assertRaises for multiple exceptions
+                # that's the expected scenario
+                # just like an assertRaises for multiple exceptions
+                pass
 
         if errors:
             msg = '{} accounts were not successfully validated.'.format(
                 len(errors)
             )
             for error in errors:
-                msg += "\naccount_number_validator('{}', '{}', '{}') returned True (expected False)".format(
-                    *error
-                )
+                msg += (
+                    '\naccount_number_validator("{}", "{}", "{}") '
+                    'returned True (expected False)'
+                ).format(*error)
 
             self.fail(msg)
 
@@ -145,7 +149,10 @@ class PreconditionExceptionsTestCase(unittest.TestCase):
             BrazilianBank.get(999)
         self.assertEqual(
             str(e.exception),
-            'Bank code "999" is not implemented for country "BR"- or it does not exist at all.',
+            (
+                'Bank code "999" is not implemented for country "BR" '
+                'or it does not exist at all.'
+            ),
         )
 
     def test_missing_digit_on_branch(self):
@@ -255,5 +262,8 @@ class InvalidAccountExceptionsTestCase(unittest.TestCase):
             BrazilianBank.get(data['bank_code'])(**data).execute()
         self.assertEqual(
             str(e.exception),
-            'Combination (branch="2006", account="01008407-1") does not match.',
+            (
+                'Combination (branch="2006", account="01008407-1") '
+                'does not match.'
+            ),
         )

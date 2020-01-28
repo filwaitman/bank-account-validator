@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 from bank_account_validator.exceptions import (
     BankNotImplemented,
-    InvalidBranch,
     InvalidAccount,
+    InvalidAccountlength,
+    InvalidBranch,
     InvalidBranchAndAccountCombination,
     InvalidBranchlength,
-    InvalidAccountlength,
-    MissingBranchDigit,
     MissingAccountDigit,
-    UnexpectedBranchDigit,
+    MissingBranchDigit,
     UnexpectedAccountDigit,
+    UnexpectedBranchDigit,
 )
 from bank_account_validator.utils import (
-    smarter_zfill,
     calculate_verifier_digit,
+    smarter_zfill,
 )
 
 
@@ -37,7 +37,8 @@ class Bank(object):
         if not all([self.country, self.bank_code]):
             raise RuntimeError(
                 'Bank is an abstract class and must not be instantiated. '
-                'Use its subclasses instead - via Bank.get(bank_code, country).'
+                'Use its subclasses instead - '
+                'via Bank.get(bank_code, country).'
             )
 
         self.branch = smarter_zfill(kwargs['branch'], self.branch_length)
@@ -253,9 +254,9 @@ class Bradesco(BrazilianBank):
 
     def validate_account_digit(self):
         dv = calculate_verifier_digit(self.account, pivot='2765432')
-        dv = (
-            '0' if dv == 10 else dv
-        )  # according to documentation this one should be 'P', but I know this info is outdated
+        # according to documentation this one should be 'P',
+        # but I know this info is outdated
+        dv = '0' if dv == 10 else dv
         dv = '0' if dv == 11 else dv
 
         return self.account_digit.lower() == str(dv).lower()

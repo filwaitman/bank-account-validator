@@ -5,25 +5,26 @@ class BaseBankAccountValidationError(Exception):
 
 class BankNotImplemented(BaseBankAccountValidationError):
     def __init__(self, bank_code, country):
-        message = 'Bank code "{}" is not implemented for country "{}"- or it does not exist at all.'.format(
-            bank_code, country
-        )
+        message = (
+            'Bank code "{}" is not implemented for country '
+            '"{}"- or it does not exist at all.'
+        ).format(bank_code, country)
         super(BankNotImplemented, self).__init__(message)
 
 
 class MissingBranchDigit(BaseBankAccountValidationError):
     def __init__(self, bank):
-        message = 'For bank code "{}", branches must have a digit, of length {}.'.format(
-            bank.bank_code, bank.branch_digit_length
-        )
+        message = (
+            'For bank code "{}", branches must have a digit, of length {}.'
+        ).format(bank.bank_code, bank.branch_digit_length)
         super(MissingBranchDigit, self).__init__(message)
 
 
 class MissingAccountDigit(BaseBankAccountValidationError):
     def __init__(self, bank):
-        message = 'For bank code "{}", accounts must have a digit, of length {}.'.format(
-            bank.bank_code, bank.account_digit_length
-        )
+        message = (
+            'For bank code "{}", accounts must have a digit, of length {}.'
+        ).format(bank.bank_code, bank.account_digit_length)
         super(MissingAccountDigit, self).__init__(message)
 
 
@@ -89,7 +90,7 @@ class InvalidBranchAndAccountCombination(BaseBankAccountValidationError):
         if account_digit:
             account_info += '-{}'.format(account_digit)
 
-        message = 'Combination (branch="{}", account="{}") does not match.'.format(
-            branch_info, account_info
-        )
+        message = (
+            'Combination (branch="{}", account="{}") does not match.'
+        ).format(branch_info, account_info)
         super(InvalidBranchAndAccountCombination, self).__init__(message)

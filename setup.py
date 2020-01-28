@@ -5,14 +5,14 @@ VERSION = '0.1.1'
 
 setup(
     name='bank-account-validator',
-    packages=['bank_account_validator',],
+    packages=['bank_account_validator'],
     version=VERSION,
     author='Filipe Waitman',
     author_email='dev@noverde.com.br',
     tests_require=['setuptools==19.1.1', 'nose==1.3.7'],
     url='https://github.com/noverde/bank-account-validator',
-    download_url='https://github.com/noverde/bank-account-validator/tarball/{}'.format(
-        VERSION
+    download_url=(
+        f'https://github.com/noverde/bank-account-validator/tarball/{VERSION}'
     ),
     keywords=[],
     test_suite='tests',
