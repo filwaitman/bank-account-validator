@@ -14,14 +14,19 @@ def smarter_zfill(value, expected_length=None):
     return result
 
 
-def calculate_verifier_digit(account_relevant_data, pivot, method='mod11', sum_digits=False):
+def calculate_verifier_digit(
+    account_relevant_data, pivot, method='mod11', sum_digits=False
+):
     def _sum_digits(value):
         return sum([int(x) for x in str(value)])
 
     if len(account_relevant_data) != len(pivot):
         raise RuntimeError('Invalid method: {}'.format(method))
 
-    values = [int(x) * int(y) for x, y in zip(account_relevant_data.zfill(len(pivot)), pivot)]
+    values = [
+        int(x) * int(y)
+        for x, y in zip(account_relevant_data.zfill(len(pivot)), pivot)
+    ]
 
     result = sum(values)
     if sum_digits:
