@@ -11,7 +11,7 @@ Usage:
 
     from bank_account_validator.core import Bank
     bank_class = Bank.get('bank_code', 'country_code')
-    bank_class(branch='branch', branch_digit='branch_digit', 
+    bank_class(branch='branch', branch_digit='branch_digit',
                account='account', account_digit='account_digit').execute()
 
 

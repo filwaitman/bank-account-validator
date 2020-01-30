@@ -1,0 +1,32 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v1
+      - name: Setup Python
+        uses: actions/setup-python@v1.1.1
+        with:
+          python-version: 3.7
+      - name: Check style
+        run: |
+          pip install pre-commit
+          pre-commit run --all-files
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v1
+      - name: Setup Python
+        uses: actions/setup-python@v1.1.1
+        with:
+          python-version: 3.7
+      - name: Install Pipenv
+        run: pip install pipenv
+      - name: Install dependencies
+        run: pipenv sync -d
+      - name: Run tests
+        run: pipenv run python -m unittest
