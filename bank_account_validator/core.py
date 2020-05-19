@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from bank_account_validator.exceptions import (
-    BankNotImplemented, InvalidBranch, InvalidAccount, InvalidBranchAndAccountCombination, InvalidBranchlength,
-    InvalidAccountlength, MissingBranchDigit, MissingAccountDigit, UnexpectedBranchDigit, UnexpectedAccountDigit
+    BankNotImplemented, InvalidAccount, InvalidAccountlength, InvalidBranch, InvalidBranchAndAccountCombination,
+    InvalidBranchlength, MissingAccountDigit, MissingBranchDigit, UnexpectedAccountDigit, UnexpectedBranchDigit
 )
-from bank_account_validator.utils import smarter_zfill, calculate_verifier_digit
+from bank_account_validator.utils import calculate_verifier_digit, smarter_zfill
 
 
 def all_subclasses(cls):
