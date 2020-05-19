@@ -54,7 +54,7 @@ class Bank(object):
             country = cls.country
 
         subclasses = all_subclasses(cls)
-        bank_class = filter(lambda x: x.bank_code == bank_code and x.country == country, subclasses)
+        bank_class = list(filter(lambda x: x.bank_code == bank_code and x.country == country, subclasses))
 
         if bank_class:
             return bank_class[0]

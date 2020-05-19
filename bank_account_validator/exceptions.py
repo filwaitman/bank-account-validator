@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class BaseBankAccountValidationError(Exception):
-    pass
+    def __init__(self, message):
+        self.message = message
 
 
 class BankNotImplemented(BaseBankAccountValidationError):
