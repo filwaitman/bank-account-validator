@@ -108,49 +108,49 @@ class PreconditionExceptionsTestCase(unittest.TestCase):
     def test_not_implemented_bank(self):
         with self.assertRaises(BankNotImplemented) as e:
             BrazilianBank.get(999)
-        self.assertEquals(e.exception.message, 'Bank code "999" is not implemented for country "BR"- or it does not exist at all.')
+        self.assertEqual(e.exception.message, 'Bank code "999" is not implemented for country "BR"- or it does not exist at all.')
 
     def test_missing_digit_on_branch(self):
         self.valid_data['branch_digit'] = ''
 
         with self.assertRaises(MissingBranchDigit) as e:
             self.bank(**self.valid_data)
-        self.assertEquals(e.exception.message, 'For bank code "237", branches must have a digit, of length 1.')
+        self.assertEqual(e.exception.message, 'For bank code "237", branches must have a digit, of length 1.')
 
     def test_unexpected_branch_digit(self):
         self.valid_data['branch_digit'] = '12'
 
         with self.assertRaises(UnexpectedBranchDigit) as e:
             self.bank(**self.valid_data)
-        self.assertEquals(e.exception.message, 'For bank code "237", branches must have 1 digits.')
+        self.assertEqual(e.exception.message, 'For bank code "237", branches must have 1 digits.')
 
     def test_missing_digit_on_account(self):
         self.valid_data['account_digit'] = ''
 
         with self.assertRaises(MissingAccountDigit) as e:
             self.bank(**self.valid_data)
-        self.assertEquals(e.exception.message, 'For bank code "237", accounts must have a digit, of length 1.')
+        self.assertEqual(e.exception.message, 'For bank code "237", accounts must have a digit, of length 1.')
 
     def test_unexpected_account_digit(self):
         self.valid_data['account_digit'] = '12'
 
         with self.assertRaises(UnexpectedAccountDigit) as e:
             self.bank(**self.valid_data)
-        self.assertEquals(e.exception.message, 'For bank code "237", accounts must have 1 digits.')
+        self.assertEqual(e.exception.message, 'For bank code "237", accounts must have 1 digits.')
 
     def test_branch_too_big(self):
         self.valid_data['branch'] = '17695'
 
         with self.assertRaises(InvalidBranchlength) as e:
             self.bank(**self.valid_data)
-        self.assertEquals(e.exception.message, 'For bank code "237", branches length must be 4.')
+        self.assertEqual(e.exception.message, 'For bank code "237", branches length must be 4.')
 
     def test_account_too_big(self):
         self.valid_data['account'] = '12000408'
 
         with self.assertRaises(InvalidAccountlength) as e:
             self.bank(**self.valid_data)
-        self.assertEquals(e.exception.message, 'For bank code "237", accounts length must be 7.')
+        self.assertEqual(e.exception.message, 'For bank code "237", accounts length must be 7.')
 
     def test_zeroes_at_left_doesnt_count(self):
         self.valid_data['branch'] = '000000001768'
@@ -170,7 +170,7 @@ class InvalidAccountExceptionsTestCase(unittest.TestCase):
 
         with self.assertRaises(InvalidBranch) as e:
             BrazilianBank.get(data['bank_code'])(**data).execute()
-        self.assertEquals(e.exception.message, 'Branch "1769-1" is wrong.')
+        self.assertEqual(e.exception.message, 'Branch "1769-1" is wrong.')
 
     def test_invalid_account_digit(self):
         data = {
@@ -183,7 +183,7 @@ class InvalidAccountExceptionsTestCase(unittest.TestCase):
 
         with self.assertRaises(InvalidAccount) as e:
             BrazilianBank.get(data['bank_code'])(**data).execute()
-        self.assertEquals(e.exception.message, 'Account "0200040-1" is wrong.')
+        self.assertEqual(e.exception.message, 'Account "0200040-1" is wrong.')
 
     def test_invalid_branch_account_combination(self):
         data = {
@@ -196,4 +196,4 @@ class InvalidAccountExceptionsTestCase(unittest.TestCase):
 
         with self.assertRaises(InvalidBranchAndAccountCombination) as e:
             BrazilianBank.get(data['bank_code'])(**data).execute()
-        self.assertEquals(e.exception.message, 'Combination (branch="2006", account="01008407-1") does not match.')
+        self.assertEqual(e.exception.message, 'Combination (branch="2006", account="01008407-1") does not match.')
