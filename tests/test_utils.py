@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
+
 from bank_account_validator.utils import smarter_zfill
 
 

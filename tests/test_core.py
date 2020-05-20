@@ -3,10 +3,11 @@ import unittest
 
 from bank_account_validator.core import BrazilianBank
 from bank_account_validator.exceptions import (
-    BankNotImplemented, InvalidBranch, InvalidAccount, InvalidBranchAndAccountCombination, InvalidBranchlength,
-    InvalidAccountlength, MissingBranchDigit, MissingAccountDigit, UnexpectedBranchDigit, UnexpectedAccountDigit
+    BankNotImplemented, InvalidAccount, InvalidAccountlength, InvalidBranch, InvalidBranchAndAccountCombination,
+    InvalidBranchlength, MissingAccountDigit, MissingBranchDigit, UnexpectedAccountDigit, UnexpectedBranchDigit
 )
-from tests.data import BANRISUL, BANCO_DO_BRASIL, SANTANDER, CAIXA_ECONOMICA_FEDERAL, BRADESCO, ITAU
+
+from tests.data import BANCO_DO_BRASIL, BANRISUL, BRADESCO, CAIXA_ECONOMICA_FEDERAL, ITAU, SANTANDER
 
 
 class BanrisulValidateBranchDigitTestCase(unittest.TestCase):

@@ -1,3 +1,10 @@
+.. image:: https://travis-ci.com/filwaitman/bank-account-validator.svg?branch=master
+    :target: https://travis-ci.com/filwaitman/bank-account-validator
+
+.. image:: https://codecov.io/gh/filwaitman/bank-account-validator/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/filwaitman/bank-account-validator
+
+
 Bank Account Validator
 =======================
 
@@ -11,7 +18,7 @@ Usage:
 
     from bank_account_validator.core import Bank
     bank_class = Bank.get('bank_code', 'country_code')
-    bank_class(branch='branch', branch_digit='branch_digit', 
+    bank_class(branch='branch', branch_digit='branch_digit',
                account='account', account_digit='account_digit').execute()
 
 

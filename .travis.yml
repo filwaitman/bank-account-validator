@@ -1,0 +1,16 @@
+language: python
+cache: pip
+dist: xenial
+python:
+  - "2.7"
+  - "3.6"
+  - "3.7"
+  - "3.8"
+install: pip install tox-travis codecov
+script:
+  - tox -e lint
+  - tox
+notifications:
+    email: false
+after_success:
+  - codecov
