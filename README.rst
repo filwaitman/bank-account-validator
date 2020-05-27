@@ -2,7 +2,19 @@
     :target: https://travis-ci.com/filwaitman/bank-account-validator
 
 .. image:: https://codecov.io/gh/filwaitman/bank-account-validator/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/filwaitman/bank-account-validator
+    :target: https://codecov.io/gh/filwaitman/bank-account-validator
+
+.. image:: https://img.shields.io/pypi/v/bank-account-validator.svg
+    :target: https://pypi.python.org/pypi/bank-account-validator
+
+.. image:: https://img.shields.io/pypi/l/bank-account-validator.svg
+    :target: https://pypi.python.org/pypi/bank-account-validator
+
+.. image:: https://img.shields.io/pypi/pyversions/bank-account-validator.svg
+    :target: https://pypi.python.org/pypi/bank-account-validator
+
+.. image:: https://img.shields.io/pypi/dm/bank-account-validator.svg
+    :target: https://pypi.python.org/pypi/bank-account-validator
 
 
 Bank Account Validator
